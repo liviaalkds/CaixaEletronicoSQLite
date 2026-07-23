@@ -1,42 +1,182 @@
-Caixa Eletrônico (Console App com SQLite)
-Aplicação de console em C# (.NET 8) que simula as operações básicas de um caixa eletrônico, utilizando persistência de dados local com SQLite.
+# Caixa Eletrônico (Console App com SQLite)
 
-Pré-requisitos
-.NET 8 SDK instalado na máquina.
+Aplicação de console desenvolvida em C# (.NET 8) que simula as principais operações de um caixa eletrônico, utilizando SQLite para persistência local dos dados.
 
-Uma IDE compatível (como JetBrains Rider ou Visual Studio Code) ou terminal com suporte à CLI do .NET.
+---
 
-Como Rodar
-Clone o repositório ou navegue até a pasta raiz do projeto pelo terminal.
+## Tecnologias Utilizadas
 
-Restaure as dependências do projeto executando:
+- C#
+- .NET 8
+- SQLite
+- Microsoft.Data.Sqlite (ADO.NET)
 
-Bash
+---
+
+## Pré-requisitos
+
+Antes de executar o projeto, certifique-se de ter instalado:
+
+- .NET 8 SDK
+- Uma IDE compatível (JetBrains Rider, Visual Studio ou Visual Studio Code)
+
+---
+
+## Como Executar
+
+### 1. Clone o repositório
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+```
+
+Ou navegue até a pasta do projeto.
+
+### 2. Restaure as dependências
+
+```bash
 dotnet restore
-Compile e execute a aplicação com o comando:
+```
 
-Bash
+### 3. Execute a aplicação
+
+```bash
 dotnet run
-Na primeira execução, o sistema criará automaticamente o arquivo de banco de dados (caixaEletronico.db) na pasta de execução.
+```
 
-Como Funciona
-O projeto é dividido em camadas estruturais para separar as responsabilidades:
+Na primeira execução, será criado automaticamente o banco de dados **caixaEletronico.db** na pasta do projeto.
 
-Models: Contém as classes de domínio, como Conta e Transacao, que representam as entidades do sistema e encapsulam a lógica de negócio e as operações de banco de dados via ADO.NET (Microsoft.Data.Sqlite).
+---
 
-Data: Contém a classe Database, responsável por inicializar o banco de dados e garantir a criação das tabelas necessárias caso elas não existam.
+## Estrutura do Projeto
 
-Program: Contém o ponto de entrada da aplicação (Main) e a interface de usuário baseada em console, exibindo o menu interativo e capturando as entradas do teclado.
+```text
+CaixaEletronico/
+│
+├── Data/
+│   └── Database.cs
+│
+├── Models/
+│   ├── Conta.cs
+│   └── Transacao.cs
+│
+├── Program.cs
+│
+└── caixaEletronico.db
+```
 
-Funcionalidades Disponíveis
-Criar Conta: Gera um número de conta aleatório, define o titular e cadastra o registro no banco com saldo zerado.
+### Models
 
-Depositar: Atualiza o saldo somando o valor informado e registra a operação na tabela de histórico.
+Contém as classes de domínio responsáveis por representar as entidades do sistema.
 
-Sacar: Verifica se há saldo suficiente, desconta o valor correspondente e registra a transação.
+#### Conta
 
-Transferir: Valida o saldo da conta de origem, realiza a operação entre duas contas distintas e grava os registros de envio e recebimento no histórico.
+- Cadastro de contas
+- Consulta de saldo
+- Depósitos
+- Saques
+- Transferências
 
-Consultar Saldo: Retorna e exibe o saldo atual da conta informada.
+#### Transacao
 
-Consultar Histórico: Lista todas as movimentações financeiras vinculadas a uma conta específica ordenadas da mais recente para a mais antiga.
+- Registro do histórico de movimentações
+- Consulta das transações realizadas
+
+Toda a comunicação com o banco é feita utilizando ADO.NET através do pacote `Microsoft.Data.Sqlite`.
+
+### Data
+
+Contém a classe `Database`, responsável por:
+
+- Criar a conexão com o SQLite;
+- Inicializar o banco de dados;
+- Criar automaticamente as tabelas caso ainda não existam.
+
+### Program
+
+É o ponto de entrada da aplicação.
+
+Responsável por:
+
+- Exibir o menu principal;
+- Receber as entradas do usuário;
+- Chamar os métodos responsáveis pelas operações bancárias.
+
+---
+
+## Funcionalidades
+
+### Criar Conta
+
+- Gera automaticamente um número de conta;
+- Define o titular;
+- Cria a conta com saldo inicial igual a R$ 0,00.
+
+### Depositar
+
+- Localiza a conta;
+- Soma o valor informado ao saldo;
+- Registra a movimentação no histórico.
+
+### Sacar
+
+- Verifica se existe saldo suficiente;
+- Efetua o saque;
+- Atualiza o saldo;
+- Registra a operação.
+
+### Transferir
+
+- Valida a existência das contas;
+- Verifica saldo disponível;
+- Realiza a transferência;
+- Registra a saída da conta de origem;
+- Registra a entrada na conta de destino.
+
+### Consultar Saldo
+
+Permite visualizar o saldo atualizado de qualquer conta cadastrada.
+
+### Consultar Histórico
+
+Exibe todas as movimentações financeiras da conta selecionada, ordenadas da mais recente para a mais antiga.
+
+Cada registro informa:
+
+- Tipo da operação;
+- Valor movimentado;
+- Data e horário da transação.
+
+---
+
+## Banco de Dados
+
+O sistema utiliza um banco de dados SQLite local.
+
+Na primeira execução são criadas automaticamente as tabelas necessárias para o funcionamento da aplicação.
+
+Principais entidades:
+
+- Contas
+- Transações
+
+---
+
+## Objetivo do Projeto
+
+Este projeto foi desenvolvido com fins acadêmicos para praticar conceitos de:
+
+- Programação Orientada a Objetos (POO)
+- Persistência de dados
+- SQLite
+- ADO.NET
+- Estruturação em camadas
+- Aplicações Console com .NET 8
+
+---
+
+## Autora
+
+**Lívia Alkimim dos Santos**
+
+Desenvolvido utilizando C# + .NET 8 + SQLite.
