@@ -26,7 +26,7 @@ Antes de executar o projeto, certifique-se de ter instalado:
 ### 1. Clone o repositório
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/liviaalkds/CaixaEletronicoSQLite.git
 ```
 
 Ou navegue até a pasta do projeto.
