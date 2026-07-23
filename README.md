@@ -7,7 +7,6 @@ Aplicação de console desenvolvida em C# (.NET 8) que simula as principais oper
 ## Tecnologias Utilizadas
 
 - C#
-- .NET 8
 - SQLite
 - Microsoft.Data.Sqlite (ADO.NET)
 
